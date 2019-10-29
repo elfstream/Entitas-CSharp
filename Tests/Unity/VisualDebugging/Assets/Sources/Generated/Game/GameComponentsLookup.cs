@@ -10,69 +10,79 @@ public static class GameComponentsLookup {
 
     public const int AnArray = 0;
     public const int AnimationCurve = 1;
-    public const int Array2D = 2;
-    public const int Array3D = 3;
-    public const int Bounds = 4;
-    public const int Color = 5;
-    public const int CoolName = 6;
-    public const int CustomObject = 7;
-    public const int DateTime = 8;
-    public const int DictArray = 9;
-    public const int Dictionary = 10;
-    public const int DontDrawSimpleObject = 11;
-    public const int GameObject = 12;
-    public const int HashSet = 13;
-    public const int ISomeInterface = 14;
-    public const int JaggedArray = 15;
-    public const int ListArray = 16;
-    public const int List = 17;
-    public const int ManyMembers = 18;
-    public const int MonoBehaviourSubClass = 19;
-    public const int MyBool = 20;
-    public const int MyChar = 21;
-    public const int MyDouble = 22;
-    public const int MyEnum = 23;
-    public const int MyFlags = 24;
-    public const int MyFloat = 25;
-    public const int MyHiddenInt = 26;
-    public const int MyInt = 27;
-    public const int MyString = 28;
-    public const int NoContext = 29;
-    public const int Person = 30;
-    public const int Position = 31;
-    public const int Property = 32;
-    public const int Rect = 33;
-    public const int SimpleObject = 34;
-    public const int SomeClass = 35;
-    public const int SomeOtherClass = 36;
-    public const int SomeStruct = 37;
-    public const int SystemObject = 38;
-    public const int Test = 39;
-    public const int Texture2D = 40;
-    public const int Texture = 41;
-    public const int Unique = 42;
-    public const int UnityObject = 43;
-    public const int UnsupportedObject = 44;
-    public const int Vector2 = 45;
-    public const int Vector3 = 46;
-    public const int Vector4 = 47;
-    public const int Velocity = 48;
+    public const int AnyMyEventClassListener = 2;
+    public const int AnyMyEventListener = 3;
+    public const int Array2D = 4;
+    public const int Array3D = 5;
+    public const int Bounds = 6;
+    public const int Color = 7;
+    public const int CoolName = 8;
+    public const int CustomFlag = 9;
+    public const int CustomObject = 10;
+    public const int DateTime = 11;
+    public const int DictArray = 12;
+    public const int Dictionary = 13;
+    public const int DontDrawSimpleObject = 14;
+    public const int Flag = 15;
+    public const int GameObject = 16;
+    public const int HashSet = 17;
+    public const int ISomeInterface = 18;
+    public const int JaggedArray = 19;
+    public const int ListArray = 20;
+    public const int List = 21;
+    public const int ManyMembers = 22;
+    public const int MonoBehaviourSubClass = 23;
+    public const int MyBool = 24;
+    public const int MyChar = 25;
+    public const int MyDouble = 26;
+    public const int MyEnum = 27;
+    public const int MyEventClass = 28;
+    public const int MyEvent = 29;
+    public const int MyFlags = 30;
+    public const int MyFloat = 31;
+    public const int MyHiddenInt = 32;
+    public const int MyInt = 33;
+    public const int MyString = 34;
+    public const int NoContext = 35;
+    public const int Person = 36;
+    public const int Position = 37;
+    public const int Property = 38;
+    public const int Rect = 39;
+    public const int SimpleObject = 40;
+    public const int SomeClass = 41;
+    public const int SomeOtherClass = 42;
+    public const int SomeStruct = 43;
+    public const int SystemObject = 44;
+    public const int Test = 45;
+    public const int Texture2D = 46;
+    public const int Texture = 47;
+    public const int Unique = 48;
+    public const int UnityObject = 49;
+    public const int UnsupportedObject = 50;
+    public const int Vector2 = 51;
+    public const int Vector3 = 52;
+    public const int Vector4 = 53;
+    public const int Velocity = 54;
 
-    public const int TotalComponents = 49;
+    public const int TotalComponents = 55;
 
     public static readonly string[] componentNames = {
         "AnArray",
         "AnimationCurve",
+        "AnyMyEventClassListener",
+        "AnyMyEventListener",
         "Array2D",
         "Array3D",
         "Bounds",
         "Color",
         "CoolName",
+        "CustomFlag",
         "CustomObject",
         "DateTime",
         "DictArray",
         "Dictionary",
         "DontDrawSimpleObject",
+        "Flag",
         "GameObject",
         "HashSet",
         "ISomeInterface",
@@ -85,6 +95,8 @@ public static class GameComponentsLookup {
         "MyChar",
         "MyDouble",
         "MyEnum",
+        "MyEventClass",
+        "MyEvent",
         "MyFlags",
         "MyFloat",
         "MyHiddenInt",
@@ -115,16 +127,20 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(AnArrayComponent),
         typeof(AnimationCurveComponent),
+        typeof(AnyMyEventClassListenerComponent),
+        typeof(AnyMyEventListenerComponent),
         typeof(Array2DComponent),
         typeof(Array3DComponent),
         typeof(BoundsComponent),
         typeof(ColorComponent),
         typeof(CoolNameComponent),
+        typeof(CustomFlagComponent),
         typeof(CustomObjectComponent),
         typeof(DateTimeComponent),
         typeof(DictArrayComponent),
         typeof(DictionaryComponent),
         typeof(DontDrawSimpleObjectComponent),
+        typeof(FlagComponent),
         typeof(GameObjectComponent),
         typeof(HashSetComponent),
         typeof(ISomeInterfaceComponent),
@@ -137,6 +153,8 @@ public static class GameComponentsLookup {
         typeof(MyCharComponent),
         typeof(MyDoubleComponent),
         typeof(MyEnumComponent),
+        typeof(MyEventClassComponent),
+        typeof(MyEventComponent),
         typeof(MyFlagsComponent),
         typeof(MyFloatComponent),
         typeof(MyHiddenIntComponent),

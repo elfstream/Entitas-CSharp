@@ -93,12 +93,14 @@ namespace Entitas.CodeGeneration.Plugins {
                 .SelectMany(createDataForNonComponent)
                 .ToArray();
 
-            var dataFromEvents = dataFromComponents
+            var mergedData = merge(dataFromNonComponents, dataFromComponents);
+
+            var dataFromEvents = mergedData
                 .Where(data => data.IsEvent())
                 .SelectMany(createDataForEvents)
                 .ToArray();
 
-            return merge(dataFromEvents, merge(dataFromNonComponents, dataFromComponents));
+            return merge(dataFromEvents, mergedData);
         }
 
         ComponentData[] merge(ComponentData[] prioData, ComponentData[] redundantData) {
@@ -132,16 +134,17 @@ namespace Entitas.CodeGeneration.Plugins {
         }
 
         ComponentData[] createDataForEvents(ComponentData data) {
-            var componentName = data.GetTypeName().ToComponentName(_ignoreNamespacesConfig.ignoreNamespaces);
             return data.GetContextNames()
                 .SelectMany(contextName =>
                     data.GetEventData().Select(eventData => {
                         var dataForEvent = new ComponentData(data);
                         dataForEvent.IsEvent(false);
                         dataForEvent.IsUnique(false);
+                        dataForEvent.ShouldGenerateComponent(false);
+                        var eventComponentName = data.EventComponentName(eventData);
                         var eventTypeSuffix = eventData.GetEventTypeSuffix();
                         var optionalContextName = dataForEvent.GetContextNames().Length > 1 ? contextName : string.Empty;
-                        var listenerComponentName = optionalContextName + componentName + eventTypeSuffix + "Listener";
+                        var listenerComponentName = optionalContextName + eventComponentName + eventTypeSuffix.AddListenerSuffix();
                         dataForEvent.SetTypeName(listenerComponentName.AddComponentSuffix());
                         dataForEvent.SetMemberData(new[] {
                             new MemberData("System.Collections.Generic.List<I" + listenerComponentName + ">", "value")
@@ -159,7 +162,7 @@ namespace Entitas.CodeGeneration.Plugins {
         string[] getComponentNames(Type type) {
             var attr = Attribute
                 .GetCustomAttributes(type)
-                .OfType<CustomComponentNameAttribute>()
+                .OfType<ComponentNameAttribute>()
                 .SingleOrDefault();
 
             if (attr == null) {

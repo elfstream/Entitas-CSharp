@@ -60,22 +60,20 @@
 │           │   ├── Entity
 │           │   └── TypeDrawer
 │           └── Images
-├── Entitas
-│   └── Entitas
-│       ├── Collector
-│       ├── Context
-│       │   └── Exceptions
-│       ├── Entity
-│       │   └── Exceptions
-│       ├── EntityIndex
-│       ├── Extensions
-│       ├── Group
-│       ├── Matcher
-│       │   └── Interfaces
-│       └── Systems
-│           └── Interfaces
-└── Scripts
-    └── docs_resources
+└── Entitas
+    └── Entitas
+        ├── Collector
+        ├── Context
+        │   └── Exceptions
+        ├── Entity
+        │   └── Exceptions
+        ├── EntityIndex
+        ├── Extensions
+        ├── Group
+        ├── Matcher
+        │   └── Interfaces
+        └── Systems
+            └── Interfaces
 .
 ├── Addons
 │   ├── Entitas.Blueprints
@@ -111,8 +109,8 @@
 │   │       │   ├── EntityIndexType.cs
 │   │       │   └── PrimaryEntityIndexAttribute.cs
 │   │       ├── CleanupAttribute.cs
+│   │       ├── ComponentNameAttribute.cs
 │   │       ├── ContextAttribute.cs
-│   │       ├── CustomComponentNameAttribute.cs
 │   │       ├── CustomEntityIndexAttribute.cs
 │   │       ├── DontGenerateAttribute.cs
 │   │       ├── EventAttribute.cs
@@ -280,8 +278,10 @@
 │           │   ├── EntitasContextHierarchyIcon.png
 │           │   ├── EntitasEntityErrorHierarchyIcon.png
 │           │   ├── EntitasEntityHierarchyIcon.png
-│           │   ├── EntitasSystemsErrorHierarchyIcon.png
-│           │   └── EntitasSystemsHierarchyIcon.png
+│           │   ├── EntitasEntityLinkHierarchyIcon.png
+│           │   ├── EntitasEntityLinkWarnHierarchyIcon.png
+│           │   ├── EntitasSystemsHierarchyIcon.png
+│           │   └── EntitasSystemsWarnHierarchyIcon.png
 │           ├── EntitasHierarchyIcon.cs
 │           ├── EntitasStats.cs
 │           ├── EntityLinkInspector.cs
@@ -330,13 +330,8 @@
 │       │   └── PrimaryEntityIndex.cs
 │       ├── Extensions
 │       │   ├── CollectionExtension.cs
-│       │   ├── ComponentStringExtension.cs
-│       │   ├── ContextStringExtension.cs
-│       │   ├── EntityStringExtension.cs
-│       │   ├── ListenerStringExtension.cs
-│       │   ├── MatcherStringExtension.cs
-│       │   ├── PublicMemberInfoEntityExtension.cs
-│       │   └── SystemStringExtension.cs
+│       │   ├── EntitasStringExtension.cs
+│       │   └── PublicMemberInfoEntityExtension.cs
 │       ├── Group
 │       │   ├── Group.cs
 │       │   ├── GroupEvent.cs
@@ -368,27 +363,16 @@
 │       │   ├── ReactiveSystem.cs
 │       │   └── Systems.cs
 │       ├── ContextInfo.cs
-│       ├── EntitasCache.cs
 │       ├── EntitasException.cs
 │       ├── EntitasResources.cs
 │       ├── IComponent.cs
 │       └── version.txt
-├── Scripts
-│   ├── docs_resources
-│   │   ├── docs-logo.png
-│   │   ├── docset.doxyfile
-│   │   ├── html.doxyfile
-│   │   ├── icon.png
-│   │   └── icon@2x.png
-│   ├── bee
-│   ├── private.sh
-│   ├── rsync_exclude.txt
-│   └── rsync_include.txt
+├── CHANGELOG.md
+├── CHANGES.md
 ├── CONTRIBUTING.md
 ├── EntitasUpgradeGuide.md
 ├── ISSUE_TEMPLATE.md
 ├── LICENSE.txt
 ├── README.md
-├── RELEASE_NOTES.md
-├── changes.md
+├── bee.sh
 └── icon.png

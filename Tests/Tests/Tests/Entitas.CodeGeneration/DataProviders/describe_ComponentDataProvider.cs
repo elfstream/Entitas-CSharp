@@ -120,7 +120,7 @@ Entitas.CodeGeneration.Plugins.IgnoreNamespaces = false");
                 eventData[1].priority.should_be(2);
             };
 
-            it["gets event bindToEntity"] = () => {
+            it["gets event target"] = () => {
                 getData<StandardEventComponent>().GetEventData()[0].eventTarget.GetType().should_be(typeof(EventTarget));
                 getData<StandardEventComponent>().GetEventData()[0].eventTarget.should_be(EventTarget.Any);
                 getData<StandardEntityEventComponent>().GetEventData()[0].eventTarget.should_be(EventTarget.Self);
@@ -141,26 +141,33 @@ Entitas.CodeGeneration.Plugins.IgnoreNamespaces = false");
                 var d = getMultipleData<StandardEventComponent>();
                 d.Length.should_be(2);
                 d[1].IsEvent().should_be_false();
-                d[1].GetTypeName().should_be("StandardEventListenerComponent");
+                d[1].GetTypeName().should_be("AnyStandardEventListenerComponent");
                 d[1].GetMemberData().Length.should_be(1);
                 d[1].GetMemberData()[0].name.should_be("value");
-                d[1].GetMemberData()[0].type.should_be("System.Collections.Generic.List<IStandardEventListener>");
+                d[1].GetMemberData()[0].type.should_be("System.Collections.Generic.List<IAnyStandardEventListener>");
+            };
+
+            it["creates data for unique event listeners"] = () => {
+                var d = getMultipleData<UniqueEventComponent>();
+                d.Length.should_be(2);
+                d[1].IsEvent().should_be_false();
+                d[1].IsUnique().should_be_false();
             };
 
             it["creates data for event listeners with multiple contexts"] = () => {
                 var d = getMultipleData<MultipleContextStandardEventComponent>();
                 d.Length.should_be(3);
                 d[1].IsEvent().should_be_false();
-                d[1].GetTypeName().should_be("TestMultipleContextStandardEventListenerComponent");
+                d[1].GetTypeName().should_be("TestAnyMultipleContextStandardEventListenerComponent");
                 d[1].GetMemberData().Length.should_be(1);
                 d[1].GetMemberData()[0].name.should_be("value");
-                d[1].GetMemberData()[0].type.should_be("System.Collections.Generic.List<ITestMultipleContextStandardEventListener>");
+                d[1].GetMemberData()[0].type.should_be("System.Collections.Generic.List<ITestAnyMultipleContextStandardEventListener>");
 
                 d[2].IsEvent().should_be_false();
-                d[2].GetTypeName().should_be("Test2MultipleContextStandardEventListenerComponent");
+                d[2].GetTypeName().should_be("Test2AnyMultipleContextStandardEventListenerComponent");
                 d[2].GetMemberData().Length.should_be(1);
                 d[2].GetMemberData()[0].name.should_be("value");
-                d[2].GetMemberData()[0].type.should_be("System.Collections.Generic.List<ITest2MultipleContextStandardEventListener>");
+                d[2].GetMemberData()[0].type.should_be("System.Collections.Generic.List<ITest2AnyMultipleContextStandardEventListener>");
             };
         };
 
@@ -209,6 +216,32 @@ Entitas.CodeGeneration.Plugins.IgnoreNamespaces = false");
             it["gets flag prefix"] = () => { data.GetFlagPrefix().should_be("is"); };
 
             it["gets is no event"] = () => { data.IsEvent().should_be_false(); };
+
+            it["gets event"] = () => {
+                getData<EventToGenerate>().GetEventData().Length.should_be(1);
+                var eventData = getData<EventToGenerate>().GetEventData()[0];
+                eventData.eventTarget.should_be(EventTarget.Any);
+                eventData.eventType.should_be(EventType.Added);
+                eventData.priority.should_be(0);
+            };
+
+            it["creates data for event listeners"] = () => {
+                var d = getMultipleData<EventToGenerate>();
+                d.Length.should_be(3);
+                d[1].IsEvent().should_be_false();
+                d[1].ShouldGenerateComponent().should_be_false();
+                d[1].GetTypeName().should_be("TestAnyEventToGenerateListenerComponent");
+                d[1].GetMemberData().Length.should_be(1);
+                d[1].GetMemberData()[0].name.should_be("value");
+                d[1].GetMemberData()[0].type.should_be("System.Collections.Generic.List<ITestAnyEventToGenerateListener>");
+
+                d[2].IsEvent().should_be_false();
+                d[2].ShouldGenerateComponent().should_be_false();
+                d[2].GetTypeName().should_be("Test2AnyEventToGenerateListenerComponent");
+                d[2].GetMemberData().Length.should_be(1);
+                d[2].GetMemberData()[0].name.should_be("value");
+                d[2].GetMemberData()[0].type.should_be("System.Collections.Generic.List<ITest2AnyEventToGenerateListener>");
+            };
         };
 
         context["multiple types"] = () => {
